@@ -23,10 +23,11 @@ public class Gamelogic3 : MonoBehaviour
     public AudioClip gameMusicClip; // Audio clip for game music
     
     public GameObject StartButton;
-    public GameObject endGameButton; // Reference to the UI button for ending the game
-    public GameObject restartGameButton; // Reference to the UI button for restarting the game
+    public GameObject endGameButton; 
+    public GameObject restartGameButton; 
     public GameObject next_level_button;
-    public float delayBeforeButtons = 2f; // Delay before showing end game and restart game buttons
+    public float delay = 2f;
+    public float long_delay = 4f;// Delay before showing end game and restart game buttons
 
     public List<RenderTexture> roundRenderTextures = new List<RenderTexture>(); // List of render textures for each round
     public RawImage roundRenderTextureImage; // UI Image element to display the render texture
@@ -59,7 +60,6 @@ public class Gamelogic3 : MonoBehaviour
 
         _inputData = GetComponent<InputData>();
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to the same GameObject
-
         lineVisual = GetComponent<XRInteractorLineVisual>();
 
         if (lineVisual == null)
@@ -72,6 +72,9 @@ public class Gamelogic3 : MonoBehaviour
         endGameButton.SetActive(false);
         restartGameButton.SetActive(false);
         next_level_button.SetActive(false);
+
+        // Ensure buttons are set up correctly
+        Debug.Log("Buttons setup: StartButton - " + (StartButton != null) + ", RestartGameButton - " + (restartGameButton != null) + ", EndGameButton - " + (endGameButton != null) + ", NextLevelButton - " + (next_level_button != null));
 
     }
 
@@ -130,19 +133,29 @@ public class Gamelogic3 : MonoBehaviour
 
             // Other setup tasks for the round
             AssignCorrectOption();
+            // Add a delay before starting the next round
+            StartCoroutine(DelayBeforeNextRound(long_delay));
         }
         
         else
         {
-            EndGame();
+            StartCoroutine(EndGameAfterDelay(delay));
         }
 
         if (currentRound > 5)
         {
             next_level_button.SetActive(true);
             restartGameButton.SetActive(true);
-            endGameButton.SetActive(false);  
+            endGameButton.SetActive(true);  
         }
+    }
+
+    
+
+    private IEnumerator DelayBeforeNextRound(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // Call a method to start the next round after delay
     }
 
     private void AssignCorrectOption()
@@ -161,13 +174,17 @@ public class Gamelogic3 : MonoBehaviour
 
         
         int layerMask = LayerMask.GetMask("StartGame","EndGame","RestartGame","BallLayer", "NextLevel");
-        
 
 
         // Cast a ray from the controller to detect collisions with objects
         if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance,layerMask))
         {
-            
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("BallLayer"))
+            {
+                lineVisual.validColorGradient = new Gradient() { colorKeys = new GradientColorKey[] { new(highlightRayColor, 0f) } };
+                
+            }
+
             // Check if the hit object belongs to the "StartGame" layer
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("StartGame"))
             {
@@ -300,7 +317,7 @@ public class Gamelogic3 : MonoBehaviour
 
     private void UpdateRoundText()
     {
-        StartCoroutine(DelayBeforeButtons());
+        StartCoroutine(DelayBeforeButtons(delay));
         RoundNumberText.text = "Round: " + currentRound;
         
     }
@@ -323,7 +340,7 @@ public class Gamelogic3 : MonoBehaviour
         Debug.Log("Game Over");
 
         
-        StartCoroutine(DelayBeforeButtons());
+        
 
         // Enable end game and restart game buttons
         endGameButton.SetActive(true);
@@ -333,7 +350,11 @@ public class Gamelogic3 : MonoBehaviour
     private void OnNextLevelButtonPressed()
     {
 
-        StartCoroutine(DelayBeforeButtons());
+        if (audioSource != null && gameMusicClip != null && !audioSource.isPlaying)
+        {
+            audioSource.clip = gameMusicClip;
+            audioSource.Play();
+        }
 
         // Reset scores and other necessary variables
         correctScore = 0;
@@ -355,7 +376,7 @@ public class Gamelogic3 : MonoBehaviour
 
     private void RestartGame()
     {
-        StartCoroutine(DelayBeforeButtons());
+        
 
         // Reset the flag for game started
         gameStarted = false;
@@ -400,10 +421,16 @@ public class Gamelogic3 : MonoBehaviour
         StartGame();
     }
 
-
-    private IEnumerator DelayBeforeButtons()
+    private IEnumerator EndGameAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(delayBeforeButtons);
+        yield return new WaitForSeconds(delay);
+        EndGame();
+    }
+
+
+    private IEnumerator DelayBeforeButtons(float delay)
+    {
+        yield return new WaitForSeconds(delay);
 
         // Enable end game and restart game buttons
         //endGameButton.SetActive(true);
