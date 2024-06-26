@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - C_tag
+  - I_tag
+  - Cube
   layers:
   - Default
   - TransparentFX
@@ -11,11 +14,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - StartGame
+  - BallLayer
+  - EndGame
+  - RestartGame
+  - NextLevel
   - 
   - 
   - 
