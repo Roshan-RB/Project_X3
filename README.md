@@ -1,7 +1,9 @@
 # **2D DSA VR Training Application**
 *A Unity-based Virtual Reality (VR) training simulation for cerebral aneurysm detection using 2D Digital Subtraction Angiography (DSA) images.*
 
-![VR Simulation Screenshot](path-to-image) *(Replace with actual image path from your repo)*
+<img src="https://github.com/user-attachments/assets/88c068ee-d02b-471b-b42c-a411ad1a880b" alt="VR Training Application" width="600"/>
+
+
 
 ## **Table of Contents**
 - [Overview](#overview)
@@ -104,6 +106,27 @@ VR-DSA-Training/
 - **User Interaction:** HTC Vive Controllers / XR Toolkit controls  
 
 ---
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/38514ba7-71d0-45fc-a77f-d625c638f7b7" alt="DSA Simulation 1" width="300"/>
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/9b5e7dac-7d5d-4dfc-944f-f723fef60351" alt="DSA Simulation 2" width="300"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <figcaption><b>Figure: DSA simulated images generated in Unity</b></figcaption>
+    </td>
+  </tr>
+</table>
+
+<p align="left">
+    <img src="https://github.com/user-attachments/assets/cb3c1476-1270-49ab-8a5b-20b1dbc0b83e" alt="Aneurysms Modeled in Blender" width="300"/>
+</p>
+<p align="left"><b>Figure: Aneurysms Modeled in Blender</b></p>
+
 
 ## **Evaluation & Feedback**
 - **Expert Neurosurgeon Review:**  
@@ -112,8 +135,28 @@ VR-DSA-Training/
 - **Usability Study (5 Participants):**  
   ✅ **High immersion & usability**  
   ✅ **Effective training environment for medical students**  
-  🔸 **Navigation and UI refinements needed**  
+  🔸 **Navigation and UI refinements needed**
 
+<p align="left">
+    <img src="https://github.com/user-attachments/assets/bd521967-a5ab-4cea-a544-ea1a6b8b3a11" alt="Aneurysms Modeled in Blender" width="300"/>
+</p>
+<p align="left"><b>Figure: Aneurysms Modeled in Blender</b></p>
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/8f9ea420-4471-4bdd-b6e7-5a8e4997c7ef" alt="DSA Simulation 1" width="300"/>
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/889711ba-cffc-4a81-a4b3-7792fd9c7a9f" alt="DSA Simulation 2" width="300"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <figcaption><b>Figure: Studio setup to capture the DSA simulation</b></figcaption>
+    </td>
+  </tr>
+</table>
 ---
 
 ## **Future Work**
@@ -127,14 +170,11 @@ VR-DSA-Training/
 
 ## **Contributors**
 👨‍💻 **Roshan Rayala Bhaskar** *(Developer & Researcher)*  
-🎓 **Prof. Dr. Christian Hansen** *(Supervisor, Virtual and Augmented Reality Group, OVGU Magdeburg)*  
-🩺 **Dr. Mareen Allgaier** *(Medical Advisor, Neuroradiology & Neurosurgery)*  
+🎓 **Dr. Mareen Allgaier** *(Supervisor, Research Associate, Lehrstuhl für Visualisierung, OVGU, Magdeburg)*  
 
 ---
 
 ## **License**
 This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
 
----
 
-This README gives your project a **professional and structured** look, making it easy for anyone to understand and contribute. Let me know if you need any modifications! 🚀
